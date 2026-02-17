@@ -1,0 +1,207 @@
+body {
+  height: 100vh;
+  background: linear-gradient(to bottom, #cbeafc, #b2e0f5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  overflow: hidden;
+}
+
+.scene {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+/* === BOWL === */
+.bowl {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 110px;
+  background: linear-gradient(to bottom, rgba(180, 220, 255, 0.2), rgba(150, 200, 255, 0.3));
+  border: 4px solid rgba(100, 150, 220, 0.6);
+  border-radius: 0 0 110px 110px;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 10px 30px rgba(255, 255, 255, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.bowl-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Milk that fills up */
+.milk {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0.95));
+  border-radius: 0 0 106px 106px;
+  animation: fillMilk 5s ease-in-out infinite;
+}
+
+@keyframes fillMilk {
+  0%, 25% {
+    height: 0%;
+  }
+  100% {
+    height: 65%;
+  }
+}
+
+/* Cereal pieces */
+.cereal {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  bottom: 10px;
+  animation: riseWithMilk 5s ease-in-out infinite;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes riseWithMilk {
+  0%, 25% {
+    bottom: 10px;
+  }
+  100% {
+    bottom: 50px;
+  }
+}
+
+.red { background: #e74c3c; }
+.yellow { background: #f39c12; }
+.orange { background: #e67e22; }
+
+.cereal:nth-child(2n) { animation-delay: 0.1s; }
+.cereal:nth-child(3n) { animation-delay: 0.2s; }
+.cereal:nth-child(4n) { animation-delay: 0.15s; }
+.cereal:nth-child(5n) { animation-delay: 0.25s; }
+
+/* === SPOON IN BOWL === */
+.spoon {
+  position: absolute;
+  bottom: 30px;
+  right: 10px;
+  width: 90px;
+  height: 10px;
+  background: linear-gradient(90deg, #c0c0c0, #d8d8d8, #a8a8a8);
+  border-radius: 5px;
+  transform: rotate(-40deg);
+  transform-origin: left center;
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.spoon-head {
+  position: absolute;
+  left: -18px;
+  top: -10px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #d8d8d8, #b0b0b0);
+  border-radius: 50%;
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* === BOTTLE === */
+.bottle {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  transform-origin: 60px 110px;
+  animation: tiltPour 5s ease-in-out infinite;
+  z-index: 5;
+}
+
+@keyframes tiltPour {
+  0%, 15% {
+    transform: rotate(0deg);
+  }
+  35%, 100% {
+    transform: rotate(55deg);
+  }
+}
+
+.bottle-body {
+  position: relative;
+  width: 80px;
+  height: 110px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 245, 255, 0.8));
+  border: 3px solid #999;
+  border-radius: 20px;
+  box-shadow: 
+    inset -8px -8px 20px rgba(200, 220, 255, 0.5),
+    4px 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.bottle-neck {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  width: 30px;
+  height: 25px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 245, 255, 0.8));
+  border: 3px solid #999;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  box-shadow: inset -3px -3px 8px rgba(200, 220, 255, 0.5);
+  z-index: 2;
+}
+
+.milk-inside {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0.95));
+  border-radius: 0 0 17px 17px;
+}
+
+/* === MILK POUR === */
+.milk-pour {
+  position: absolute;
+  top: 25px;
+  left: 40px;
+  width: 12px;
+  height: 0;
+  background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0.95) 100%);
+  border-radius: 6px;
+  transform: rotate(-55deg);
+  transform-origin: top center;
+  box-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.9),
+    inset 0 0 5px rgba(200, 220, 255, 0.3);
+  animation: streamPour 5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes streamPour {
+  0%, 30% {
+    height: 0;
+    opacity: 0;
+  }
+  40% {
+    height: 140px;
+    opacity: 1;
+  }
+  100% {
+    height: 140px;
+    opacity: 1;
+  }
+}
